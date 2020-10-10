@@ -1,0 +1,3 @@
+[submodule "payment"]
+	path = payment
+	url = https://github.com/microservices-demo/payment
