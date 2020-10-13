@@ -1,5 +1,5 @@
 build:
-	docker build --tag bryandollery/shipping .
+	docker build --tag reemns97/shipping .
 
 run:
-	docker run -it --rm -p 8080:80 bryandollery/shipping -d
+	docker run -it --rm -p 8080:80 reemns97/shipping -d
