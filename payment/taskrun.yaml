@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: docker-runner
+  namespace: test
+spec:
+  serviceAccountName: reem-docker-hub
+  taskRef:
+    name: docker
+  params:
+  - name: IMAGE
+    value: "reemns97/payment"
+  resources:
+    inputs:
+    - name: payment
+      resourceRef:
+        name: payment
