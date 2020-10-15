@@ -8,7 +8,6 @@ I started working with the dockerfiles, tried doing mutlistage dockerfile for th
 ## Day4:
 I finally created the muiltisatge dockerfile for the shipping microservices with the help of Mr.bryan. I tested the build and it works! 
 ## Day5: 
-I tried doing dockerfiles for the other services, i manged to do the payment, catalogue, orders and carts. For the carts it kept failing and i asked for help from one of my colleagues and turn out i need to update the source code and change the version of the maven-jdk.
+I tried doing dockerfiles for the other services, i manged to do the payment, catalogue, orders and carts. For the carts it kept failing and i asked for help from one of my colleagues and turns out i need to update the source code and change the version of the maven-jdk.
 ## Day6:
-I continued working on the other microservices and making sure that everything is working correctly. For now it seems that everything is working great and time to push the images to dockerhub and moving on to the next step.
-## Day7: 
+I continued working on the other microservices and made sure that everything is working correctly. For now it seems that everything is working great.
