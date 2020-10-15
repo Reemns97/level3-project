@@ -1,7 +1,7 @@
 # This is my daily progress notes
-### Day1:
+## Day1:
 I read and understood the requirments of the project. 
-### Day2: 
+## Day2: 
 I cloned the sock-shop microservices and copied them to this rep. Tested the microservices-demo using docker-compose to understand how it works.
 ## Day3:
 I started working with the dockerfiles, tried doing mutlistage dockerfile for the shipping microservices. I failed the first time cause i was adding all the dockfiles toghther realizing thats not how it works ;), so i went and read more about how can i build mutlisatge dockerfiles correctly.  
