@@ -2,13 +2,13 @@
 A microservices-demo service that provides payment services.
 
 ## Build
-Use 'make' or 'make build'
+Use `make` or `make build`
 
 ## Run
-Use 'make run'
+Use `make run`
 
 ## Validate
-'curl -s http://localhost:8080/health'
+`curl -s http://localhost:8080/health`
 
 ## Use
-'curl -s http://localhost:8080/payment'
+`curl -s http://localhost:8080/payment`
