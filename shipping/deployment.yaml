@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-service
+  namespace: test
+  labels:
+    app: shipping-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping-service
+  template:
+    metadata:
+      labels:
+        app: shipping-service
+    spec:
+      nodeSelector:
+        type: worker-0
+      containers:
+      - name: shipping-service
+        image: reemns97/shipping-service
+        ports:
+        - containerPort: 80
