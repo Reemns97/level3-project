@@ -29,3 +29,7 @@ RUN su - mongodb && mongod --fork --logpath /var/log/mongodb.log --dbpath /scrip
 VOLUME /scripts-db 
 
 CMD ["mongod", "--config", "/etc/mongodb.conf", "--smallfiles"]
+<<<<<<< HEAD
+=======
+
+>>>>>>> WIP

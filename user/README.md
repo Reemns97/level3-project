@@ -12,3 +12,7 @@ Use `make run`
 
 # Use
 `curl -s http://localhost:8084/user`
+<<<<<<< HEAD
+=======
+
+>>>>>>> WIP
