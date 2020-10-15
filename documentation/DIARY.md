@@ -11,3 +11,5 @@ I finally created the muiltisatge dockerfile for the shipping microservices with
 I tried doing dockerfiles for the other services, i manged to do the payment, catalogue, orders and carts. For the carts it kept failing and i asked for help from one of my colleagues and turns out i need to update the source code and change the version of the maven-jdk.
 ## Day6:
 I continued working on the other microservices and made sure that everything is working correctly. For now it seems that everything is working great.
+## Day7:
+I started with creating tekton tasks and pipelines for each microservices. I started with shipping and payment but i am facing the same issue in both. The build and push step dosnt work because of path problems. Today planing on solving the problem. 
