@@ -32,7 +32,7 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="Weaveworks" \
+LABEL org.label-schema.vendor="Reem" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Catalogue" \
@@ -44,12 +44,3 @@ LABEL org.label-schema.vendor="Weaveworks" \
 
 CMD ["/app", "-port=80"]
 EXPOSE 80
-
-FROM mysql:5.7
-
-# ENV MYSQL_ROOT_PASSWORD DEFAULT_PASS
-ENV MYSQL_ALLOW_EMPTY_PASSWORD=true
-ENV MYSQL_DATABASE=socksdb
-
-COPY ./data/dump.sql /docker-entrypoint-initdb.d/
-
