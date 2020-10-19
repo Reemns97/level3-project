@@ -2,13 +2,11 @@
 This service covers user account storage, to include cards and addresses.
 
 # Build
-Use `make` or `make build`
+Use `make build` and `make build-db`
 
 # Run
 Use `make run`
 
 # Validate
-`curl -s http://localhost:8084/health`
+`curl -s http://localhost:8084/health | jq`
 
-# Use
-`curl -s http://localhost:8084/user`
