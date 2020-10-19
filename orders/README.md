@@ -10,6 +10,4 @@ Use `make run`
 # Validate
 `curl -s http://localhost:8082/health | jq`
 
-# Use
-`curl -s http://localhost:8082/orders`
 
