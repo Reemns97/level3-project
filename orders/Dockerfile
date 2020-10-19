@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:experimental
 FROM maven:3-jdk-11
 WORKDIR /tmp
 
@@ -19,7 +18,7 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="Weaveworks" \
+LABEL org.label-schema.vendor="Reem" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: orders" \
