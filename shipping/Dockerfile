@@ -1,8 +1,8 @@
-FROM maven:3-jdk-11 as build
+FROM maven as build
 
 copy . /shipping
 WORKDIR /shipping
-RUN mvn clean package
+RUN mvn -DskipTests package
 
 
 FROM weaveworksdemos/msd-java:jre-latest
@@ -28,4 +28,3 @@ LABEL org.label-schema.vendor="Weaveworks" \
   org.label-schema.schema-version="1.0"
 
 ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
-
