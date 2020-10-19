@@ -1,4 +1,4 @@
-FROM maven as build
+FROM maven:3-jdk-11 as build
 
 copy . /shipping
 WORKDIR /shipping
