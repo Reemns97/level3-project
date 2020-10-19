@@ -2,4 +2,4 @@ build:
 	docker build --tag reemns97/front-end .
 
 run:
-	docker run -it --rm -p 8079:80 reemns97/front-end
+	docker run -itd --rm -p 8087:8079 reemns97/front-end
