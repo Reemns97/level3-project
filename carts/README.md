@@ -8,7 +8,5 @@ Use `make` or `make build`
 Use `make run`
 
 # Validate
-`curl -s http://localhost:8080/health`
+`curl -s http://localhost:8080/health | jq`
 
-# Use
-`curl -s http://localhost:8080/carts`
