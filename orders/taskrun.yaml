@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: orders-taskrun
+spec:
+  serviceAccountName: reem-sa 
+  taskRef:
+    name: orders
+  params:
+  - name: IMAGE
+    value: "reemns97/orders"
+  resources:
+    inputs:
+    - name: level3-project
+      resourceRef:
+        name: orders-resource 
