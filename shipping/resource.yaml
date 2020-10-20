@@ -1,12 +1,11 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: shipping
-  namespace: test
+  name: shipping-resource
 spec:
-  type: git
+  type: git 
   params:
     - name: revision
-      value: main
+      value: dev
     - name: url
-      value: https://github.com/Reemns97/level3-project
+      value: https://github.com/Reemns97/level3-project.git 

@@ -1,12 +1,11 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: docker
-  namespace: test
+  name: shipping
 spec:
   resources:
     inputs:
-    - name: shipping
+    - name: level3-project
       type: git
   params:
   - name: IMAGE
@@ -50,7 +49,7 @@ spec:
     command: ["/ko-app/imagedigestexporter"]
     args:
     - -images=[{"name":"$(params.IMAGE)","type":"image","url":"$(params.IMAGE)","digest":"","OutputImageDir":"$(workspaces.source.path)/image-digest"}]
-    - -termin ationMessagePath=image-digested
+    - -terminationMessagePath=image-digested
   - name: digest-to-results
     workingDir : /workspace/level3-project/shipping
     image: stedolan/jq

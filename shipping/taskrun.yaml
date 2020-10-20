@@ -1,17 +1,16 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: docker-runner
-  namespace: test
+  name: shipping-taskrun
 spec:
-  serviceAccountName: reem-docker-hub
+  serviceAccountName: reem-sa 
   taskRef:
-    name: docker
+    name: shipping
   params:
   - name: IMAGE
     value: "reemns97/shipping"
   resources:
     inputs:
-    - name: shipping
+    - name: level3-project
       resourceRef:
-        name: shipping
+        name: shipping-resource
