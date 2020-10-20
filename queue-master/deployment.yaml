@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-master
+  labels:
+    app: queue-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue-master
+  template:
+    metadata:
+      labels:
+        app: queue-master
+    spec:
+      containers:
+      - name: queue-master
+        image: reemns97/queue-master
+        ports:
+        - containerPort: 80 

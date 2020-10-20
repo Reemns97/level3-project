@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: queue-master-taskrun
+spec:
+  serviceAccountName: reem-sa 
+  taskRef:
+    name: queue-master
+  params:
+  - name: IMAGE
+    value: "reemns97/queue-master"
+  resources:
+    inputs:
+    - name: level3-project
+      resourceRef:
+        name: queue-master-resource 
