@@ -1,24 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payment-service
-  namespace: test
+  name: payment
   labels:
-    app: payment-service
+    app: payment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payment-service
+      app: payment
   template:
     metadata:
       labels:
-        app: payment-service
+        app: payment
     spec:
-      nodeSelector:
-        type: worker-0
       containers:
-      - name: payment-service
-        image: reemns97/payment-service
+      - name: payment
+        image: reemns97/payment
         ports:
         - containerPort: 80
