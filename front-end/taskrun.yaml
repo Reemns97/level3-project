@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: front-end-taskrun
+spec:
+  serviceAccountName: reem-sa 
+  taskRef:
+    name: front-end
+  params:
+  - name: IMAGE
+    value: "reemns97/front-end"
+  resources:
+    inputs:
+    - name: level3-project
+      resourceRef:
+        name: front-end-resource 
