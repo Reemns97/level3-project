@@ -5,7 +5,7 @@ metadata:
 spec:
   resources:
     inputs:
-    - name: payment
+    - name: level3-project
       type: git
   params:
   - name: IMAGE

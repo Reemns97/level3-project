@@ -11,6 +11,6 @@ spec:
     value: "reemns97/payment"
   resources:
     inputs:
-    - name: payment
+    - name: level3-project
       resourceRef:
         name: payment-resource 
