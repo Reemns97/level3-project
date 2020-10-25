@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: picalc-pr-
+spec:
+  pipelineRef:
+    name: build-and-deploy-pipeline
+  params:
+    - name: gitUrl
+      value: https://github.com/Reemns97/level3-project
+    - name: gitRevision
+      value: dev
+    - name: pathToYamlFile
+      value: shipping/deployment.yaml
+    - name: imageUrl
+      value: docker.io/reemns97/shipping
+    - name: imageTag
+      value: "1.0"
+  serviceAccountName: reem-sa
+  workspaces:
+    - name: git-source
+      persistentVolumeClaim:
+        claimName: picalc-source-pvc 
