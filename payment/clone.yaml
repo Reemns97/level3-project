@@ -29,7 +29,7 @@ spec:
   - name: subdirectory
     description: subdirectory inside the "output" workspace to clone the git repo into
     type: string
-    default: "shipping"
+    default: "payment"
   - name: deleteExisting
     description: clean out the contents of the repo's destination directory (if it already exists) before trying to clone the repo there
     type: string
@@ -39,9 +39,9 @@ spec:
     description: The precise commit SHA that was fetched by this Task
   steps:
   - name: clone
-    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:latest
+    image: gcr.io/tek ton-releases/github.com/tektoncd/pipeline/cmd/git-init:latest
     script: |
-      CHECKOUT_DIR="$(workspaces.output.path)/$(params.subdirectory)"
+      CHECKOUT_DIR="$( workspaces.output.path)/$(params.subdirectory)"
 
       cleandir() {
         # Delete any existing contents of the repo directory if it exists.
@@ -54,8 +54,8 @@ spec:
           # Delete files and directories starting with . but excluding ..
           rm -rf "$CHECKOUT_DIR"/.[!.]*
           # Delete files and directories starting with .. plus any other character
-          rm -rf "$CHECKOUT_DIR"/..?*
-        fi
+          r m -rf "$CHECKOUT_DIR"/..?*
+        fi 
       }
 
       if [[ "$(params.deleteExisting)" == "true" ]] ; then
@@ -68,7 +68,7 @@ spec:
         -path "$CHECKOUT_DIR" \
         -sslVerify="$(params.sslVerify)" \
         -submodules="$(params.submodules)" \
-        -depth="$(params.depth)"
+        -dep th="$(params.depth)"
       cd "$CHECKOUT_DIR"
       RESULT_SHA="$(git rev-parse HEAD | tr -d '\n')"
       EXIT_CODE="$?"
