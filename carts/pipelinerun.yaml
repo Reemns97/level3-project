@@ -13,7 +13,7 @@ spec:
     - name: pathToYamlFile
       value: carts/deployment.yaml
     - name: imageUrl
-      value: docker.io/reemns97/shipping
+      value: docker.io/reemns97/orders
     - name: imageTag
       value: "latest"
   serviceAccountName: reem-sa
