@@ -20,4 +20,4 @@ spec:
   workspaces:
     - name: git-source
       persistentVolumeClaim:
-        claimName: picalc-source-pvc 
+        claimName: picalc-source-payment 
