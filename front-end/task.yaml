@@ -3,30 +3,28 @@ kind: Task
 metadata:
   name: front-end
 spec:
-  resources:
-    inputs:
-    - name: level3-project
-      type: git
   params:
   - name: IMAGE
     description: Name (reference) of the image to build.
   - name: DOCKERFILE
     description: Path to the Dockerfile to build.
-    default: /workspace/level3-project/front-end/Dockerfile
+    default: ./front-end/Dockerfile
   - name: CONTEXT
     description: The build context used by Kaniko.
-    default: /workspace/level3-project/front-end
+    default: ./front-end
   - name: EXTRA_ARGS
     default: ""
   - name: BUILDER_IMAGE
     description: The image on which builds will run
-    default: gcr.io/kaniko-project/executor:latest
-  results:
+    default : gcr.io/kaniko-project/executor:latest
+  workspaces:
+  - name: source
+  results: 
   - name: IMAGE-DIGEST
     description: Digest of the image just built.
   steps:
   - name: build-and-push
-    workingDir: /workspace/level3-project/front-end
+    workingDir: $(workspaces.source.path)
     image: $(params.BUILDER_IMAGE)
     # specifying DOCKER_CONFIG is required to allow kaniko to detect docker credential
     # https://github.com/tektoncd/pipeline/pull/706
@@ -43,7 +41,7 @@ spec:
     securityContext:
       runAsUser: 0
   - name: write-digest
-    workingDir: /workspace/level3-project/front-end
+    workingDir: $(workspaces.source.path)
     image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/imagedigestexporter:v0.11.1
     # output of imagedigestexport [{"key":"digest","value":"sha256:eed29..660","resourceRef":{"name":"myrepo/myimage"}}]
     command: ["/ko-app/imagedigestexporter"]
@@ -51,7 +49,7 @@ spec:
     - -images=[{"name":"$(params.IMAGE)","type":"image","url":"$(params.IMAGE)","digest":"","OutputImageDir":"$(workspaces.source.path)/image-digest"}]
     - -terminationMessagePath=image-digested
   - name: digest-to-results
-    workingDir: /workspace/level3-project/front-end
+    workingDir : $(workspaces.source.path)
     image: stedolan/jq
     script: |
       cat image-digested | jq -j '.[0].value' | tee /tekton/results/IMAGE-DIGEST
