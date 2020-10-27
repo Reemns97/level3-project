@@ -15,7 +15,7 @@ spec:
     - name: imageUrl
       value: docker.io/reemns97/shipping
     - name: imageTag
-      value: "1.0"
+      value: "latest"
   serviceAccountName: reem-sa
   workspaces:
     - name: git-source
