@@ -3,3 +3,9 @@ build:
 
 run:
 	docker run -it --rm -p 8085:80 reemns97/shipping -d 
+
+apply:
+	kubectl apply -f serviceAccount.yaml -f task.yaml -f clone.yaml -f deply-task.yaml -f pipeline.yaml -n test
+
+create:
+	kubectl create -f pvc.yaml -f pipelinerun.yaml -n test 

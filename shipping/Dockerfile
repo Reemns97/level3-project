@@ -1,8 +1,8 @@
 FROM maven as build
-
+RUN mkdir -p /shipping
 copy . /shipping
 WORKDIR /shipping
-RUN mvn -DskipTests package
+RUN mvn clean package
 
 
 FROM weaveworksdemos/msd-java:jre-latest
