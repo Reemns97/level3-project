@@ -26,6 +26,7 @@ RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app /images && \
 	setcap 'cap_net_bind_service=+ep' /app
 
+USER ${SERVICE_USER}
 
 ARG BUILD_DATE
 ARG BUILD_VERSION
@@ -43,4 +44,3 @@ LABEL org.label-schema.vendor="Weaveworks" \
 
 CMD ["/app", "-port=80"]
 EXPOSE 80
-
