@@ -1,15 +1,16 @@
-FROM maven as build
-RUN mkdir -p /shipping
-copy . /shipping
-WORKDIR /shipping
-RUN mvn clean package
+FROM maven:3-jdk-11 as build
+WORKDIR /tmp
 
+copy src /tmp/src
+copy pom.xml /tmp/
 
-FROM weaveworksdemos/msd-java:jre-latest
+run mvn clean package
 
-COPY --from=build /shipping/target/*.jar ./app.jar
+from adoptopenjdk/openjdk11:alpine
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+COPY --from=build /tmp/target/shipping.jar /shipping.jar
+
+run chmod a+rx ./shipping.jar
 
 USER ${SERVICE_USER}
 
@@ -27,4 +28,4 @@ LABEL org.label-schema.vendor="Reem" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./shipping.jar", "--port=80"]
