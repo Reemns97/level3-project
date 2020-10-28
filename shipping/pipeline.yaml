@@ -38,27 +38,27 @@ spec:
           value: "."
         - name: deleteExisting
           value: "true"
-    - name: source-to-image
+    - name: source-to-image  
       taskRef:
         name: shipping
       runAfter:
         - clone-repo
       workspaces:
-        - name: source
+        - name: source 
           workspace: git-source
       params:
-        - name: CONTEXT
+        - name: CONTEXT 
           value: $(params.pathToContext)
         - name: IMAGE
           value: $(params.imageUrl):$(params.imageTag)
-    - name: deploy-to-cluster
-      taskRef:
+    - name: deploy-task
+      taskRef: 
         name: deploy-using-kubectl
       workspaces:
         - name: git-source
-          workspace: git-source
+          workspace: git-source 
       params:
-        - name: pathToYamlFile
+        - name: pathToYamlFile 
           value: $(params.pathToYamlFile)
         - name: imageUrl
           value: $(params.imageUrl)
