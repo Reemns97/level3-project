@@ -3,8 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: picalc-source-payment
 spec:
-  accessModes: 
+  accessModes:
     - ReadWriteOnce
   resources:
-    requests: 
+    requests:
       storage: 500Mi

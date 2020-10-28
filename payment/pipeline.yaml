@@ -20,17 +20,17 @@ spec:
     - name: imageUrl
       description: Image name including repository
     - name: imageTag
-      description: Imagetag
+      description: Image tag
       default: "latest"
   tasks:
-    - name: clone-repo 
-      taskRef: 
+    - name: clone-repo
+      taskRef:
         name: git-clone
       workspaces:
         - name: output
           workspace: git-source
-      params: 
-        - name : url
+      params:
+        - name: url
           value: "$(params.gitUrl)"
         - name: revision
           value: "$(params.gitRevision)"
@@ -38,27 +38,27 @@ spec:
           value: "."
         - name: deleteExisting
           value: "true"
-    - name: source-to-image
+    - name: source-to-image  
       taskRef:
         name: payment
       runAfter:
         - clone-repo
       workspaces:
-        - name: source
+        - name: source 
           workspace: git-source
       params:
-        - name: CONTEXT
+        - name: CONTEXT 
           value: $(params.pathToContext)
         - name: IMAGE
-          value : $(params.imageUrl):$(params.imageTag)
-    - name: deploy-to-cluster
-      taskRef:  
+          value: $(params.imageUrl):$(params.imageTag)
+    - name: deploy-task
+      taskRef: 
         name: deploy-using-kubectl
       workspaces:
         - name: git-source
-          workspace: git-source
+          workspace: git-source 
       params:
-        - name: pathToYamlFile
+        - name: pathToYamlFile 
           value: $(params.pathToYamlFile)
         - name: imageUrl
           value: $(params.imageUrl)
