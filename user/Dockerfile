@@ -1,17 +1,14 @@
-FROM mongo:3
-ADD ./scripts /tmp/scripts
+FROM golang:1.7-alpine
+ENV sourcesdir /go/src/github.com/microservices-demo/user/
+ENV MONGO_HOST mytestdb:27017
+ENV HATEAOS user
+ENV USER_DATABASE mongodb
 
-# Modify child mongo to use /data/db-accounts as dbpath (because /data/db wont persist the build because it is already a VOLUME)
-RUN mkdir -p /data/db-users \
-    && echo "dbpath = /data/db-users" > /etc/mongodb.conf \
-    && chown -R mongodb:mongodb /data/db-users
-RUN chmod +x /tmp/scripts/mongo_create_insert.sh
-RUN su - mongodb && mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db-users  \
-    && /tmp/scripts/mongo_create_insert.sh 
- 
-RUN chown -R mongodb /data/db-users
+COPY . ${sourcesdir}
+RUN apk update
+RUN apk add git
+RUN go get -v github.com/Masterminds/glide && cd ${sourcesdir} && glide install && go install
 
-# Make the new dir a VOLUME to persist it
-VOLUME /data/db-users
+ENTRYPOINT user
+EXPOSE 8084
 
-CMD ["mongod", "--config", "/etc/mongodb.conf", "--smallfiles"]
