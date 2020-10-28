@@ -1,15 +1,9 @@
-FROM maven:3-jdk-11
+FROM  maven:3-jdk-8-slim 
+RUN mkdir -p /queue-master
+COPY . /queue-master
+WORKDIR /queue-master
+RUN mvn clean package
 
-WORKDIR /tmp
-copy src /tmp/src
-copy pom.xml /tmp/
-run mvn clean package
-
-FROM adoptopenjdk/openjdk11:alpine
-
-COPY --from=0 /tmp/target/queue-master.jar /queue-master.jar
-RUN chmod a+rw ./queue-master.jar
-USER ${SERVICE_USER}
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./queue-master.jar", "--port=80"]
-
+FROM java:openjdk-8-alpine
+COPY --from=0 /queue-master/target/*.jar ./app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./app.jar", "--port=80"]
