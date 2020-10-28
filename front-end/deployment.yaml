@@ -52,18 +52,4 @@ spec:
     nodePort: 30001
   selector:
     name: front-end
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: front-end
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: front-end
-          servicePort: 8079
+

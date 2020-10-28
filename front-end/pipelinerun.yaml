@@ -9,7 +9,7 @@ spec:
     - name: gitUrl
       value: https://github.com/Reemns97/level3-project
     - name: gitRevision
-      value: dev
+      value: WIP
     - name: pathToYamlFile
       value: front-end/deployment.yaml
     - name: imageUrl
@@ -20,4 +20,4 @@ spec:
   workspaces:
     - name: git-source
       persistentVolumeClaim:
-        claimName: picalc-source-front-end 
+        claimName: picalc-source-front-ed

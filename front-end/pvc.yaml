@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: picalc-source-front-end
+  name: picalc-source-front-ed
 spec:
   accessModes:
     - ReadWriteOnce
