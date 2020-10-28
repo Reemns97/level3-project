@@ -3,32 +3,62 @@ kind: Deployment
 metadata:
   name: queue-master
   labels:
-    app: queue-master
+    name: queue-master
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: queue-master
+      name: queue-master
+  replicas: 1
   template:
     metadata:
       labels:
-        app: queue-master
+        name: queue-master
     spec:
       containers:
       - name: queue-master
-        image: reemns97/queue-master
+        image: reemns97/queuemaster
+        env:
+         - name: ZIPKIN
+           value: zipkin.jaeger.svc.cluster.local
+         - name: JAVA_OPTS
+           value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 300m
+            memory: 500Mi
         ports:
         - containerPort: 80
---- 
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: queue-master
   labels:
-    app: queue-master
+    name: queue-master
+  annotations:
+    prometheus.io/path: "/prometheus"
 spec:
-  selector:
-    app: queue-master
+  type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 80
+  selector:
+    name: queue-master

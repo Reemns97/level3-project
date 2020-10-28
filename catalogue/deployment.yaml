@@ -3,32 +3,57 @@ kind: Deployment
 metadata:
   name: catalogue
   labels:
-    app: catalogue
+    name: catalogue
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: catalogue
+      name: catalogue
+  replicas: 1
   template:
     metadata:
       labels:
-        app: catalogue
+        name: catalogue
     spec:
       containers:
       - name: catalogue
         image: reemns97/catalogue
+        command: ["/app"]
+        args:
+        - -port=80
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
         ports:
-        - containerPort: 80
---- 
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: catalogue
   labels:
-    app: catalogue
+    name: catalogue
 spec:
-  selector:
-    app: catalogue
+  type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 80
+  selector:
+    name: catalogue

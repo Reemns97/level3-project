@@ -1,38 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: carts
+  name: user
   labels:
-    name: carts
+    name: user
 spec:
   selector:
     matchLabels:
-      name: carts
+      name: user
   replicas: 1
   template:
     metadata:
       labels:
-        name: carts
+        name: user
     spec:
       containers:
-      - name: carts
-        image: reemns97/carts
-        env:
-         - name: ZIPKIN
-           value: zipkin.jaeger.svc.cluster.local
-         - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+      - name: user
+        image: reemns97/user
         resources:
           limits:
             cpu: 300m
-            memory: 500Mi
+            memory: 100Mi
           requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 100m
+            memory: 100Mi
         ports:
-        volumeMounts:
-        - mountPath: /tmp
-          name: tmp-volume
+        - containerPort: 80
+        env:
+        - name: mongo
+          value: user-db:27017
         livenessProbe:
           httpGet:
             path: /health
@@ -45,19 +41,15 @@ spec:
             port: 80
           initialDelaySeconds: 180
           periodSeconds: 3
-      volumes:
-        - name: tmp-volume
-          emptyDir:
-            medium: Memory
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: carts
+  name: user
   labels:
-    name: carts
+    name: user
 spec:
   type: NodePort
   ports:
@@ -65,4 +57,4 @@ spec:
   - port: 80
     targetPort: 80
   selector:
-    name: carts
+    name: user

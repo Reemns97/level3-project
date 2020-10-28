@@ -3,32 +3,55 @@ kind: Deployment
 metadata:
   name: payment
   labels:
-    app: payment
+    name: payment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: payment
+      name: payment
+  replicas: 1
   template:
     metadata:
       labels:
-        app: payment
+        name: payment
     spec:
       containers:
       - name: payment
         image: reemns97/payment
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 99m
+            memory: 100Mi
         ports:
-        - containerPort: 80 
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
+      nodeSelector:
+        beta.kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: payment
   labels:
-    app: payment
+    name: payment
 spec:
-  selector:
-    app: payment
+  type: NodePort
   ports:
-    - port: 80
-      targetPort: 80 
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 80
+  selector:
+    name: payment
