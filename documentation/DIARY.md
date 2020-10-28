@@ -22,7 +22,7 @@ going back a step because i realized that i should've created deployment files f
 ## Day11:
 turns out that the problems of yeterday were because of the dockerfiles. so today i fixed the dockerfiles and finally i saw the app working on my browser by applying the kubectl command manually "just for testin".
 ## Day12:
-Today i tried deploying the microservices using tekton and after my research i decided that i'm changing the way i doing tekton. Instead of using task, taskrun and resource, i'll be using 3 tasks (1 that clones the rep, one that builds and push, and one that deploy the app), 1 pipline and 1 piplinerun.
+Today i tried deploying the microservices using tekton and after my research i decided that i'm changing the way i doing tekton. Instead of using task, taskrun and resource, i'll be using 3 tasks (1 that clones the repo, one that builds and push, and one that deploys the app), 1 pipeline and 1 piplinerun.
 ## Day13:
 I have created the service account, secret, role and rolebinding for each microservice. in additon i started working on the tekton files and so far i've finished the shipping, payment and front-end sucessfuly.
 ## Day14:
