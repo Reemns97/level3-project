@@ -20,4 +20,4 @@ spec:
   workspaces:
     - name: git-source
       persistentVolumeClaim:
-        claimName: picalc-source-front-ed
+        claimName: picalc-source-frontend
