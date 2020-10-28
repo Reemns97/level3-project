@@ -1,14 +1,36 @@
-FROM golang:1.7-alpine
-ENV sourcesdir /go/src/github.com/microservices-demo/user/
-ENV MONGO_HOST mytestdb:27017
-ENV HATEAOS user
-ENV USER_DATABASE mongodb
+FROM golang:alpine as build
 
-COPY . ${sourcesdir}
+COPY . /go/src/github.com/microservices-demo/user/
+WORKDIR /go/src/github.com/microservices-demo/user/
+
 RUN apk update
 RUN apk add git
-RUN go get -v github.com/Masterminds/glide && cd ${sourcesdir} && glide install && go install
+RUN go get -v github.com/Masterminds/glide 
+RUN glide install && CGO_ENABLED=0 go build -a -installsuffix cgo -o /user main.go
 
-ENTRYPOINT user
-EXPOSE 8084
+FROM alpine:3.12
 
+ENV	SERVICE_USER=myuser \
+	SERVICE_UID=10001 \
+	SERVICE_GROUP=mygroup \
+	SERVICE_GID=10001
+
+RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
+	adduser -g "${SERVICE_NAME} user" -D -H -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} && \
+	apk add libcap
+
+ENV HATEAOS user
+ENV USER_DATABASE mongodb
+ENV MONGO_HOST user-db
+
+WORKDIR /
+EXPOSE 80
+COPY --from=build /user /
+
+RUN	chmod +x /user && \
+	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /user && \
+	setcap 'cap_net_bind_service=+ep' /user
+
+USER ${SERVICE_USER}
+
+CMD ["/user", "-port=80"]
