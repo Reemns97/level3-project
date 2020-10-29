@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: e2e-js-test-resource
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/danya-mudaifea/Level3-Project
+    - name: revision
+      value: main
