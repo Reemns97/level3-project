@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: deploy-using-kubectl
+spec:
+  resources:
+    inputs: 
+    - name: level3-project
+      type: git
+  params:
+    - name: pathToDBYamlFile
+      description: The path to the yaml file to deploy within the git source
+      default: level3-project/catalogue/db-deployment.yaml
+    - name: pathToYamlFile
+      description: The path to the yaml file to deploy within the git source
+      default: level3-project/catalogue/deployment.yaml
+  steps:
+    - name: run-kubectl
+      image: lachlanevenson/k8s-kubectl
+      command: ["kubectl"]
+      args:
+        - "apply"
+        - "-f"
+        - "$(params.pathToDBYamlFile)"
+        - "-f"
+        - "$(params.pathToYamlFile)"
+        - "-n"
+        - "test"

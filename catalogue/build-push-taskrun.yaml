@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: catalogue-taskrun
+spec:
+  serviceAccountName: reem-sa 
+  taskRef:
+    name: catalogue
+  resources:
+    inputs:
+    - name: level3-project
+      resourceRef:
+        name: catalogue-resource 
