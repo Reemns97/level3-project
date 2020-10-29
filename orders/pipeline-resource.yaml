@@ -6,6 +6,6 @@ spec:
   type: git 
   params:
     - name: revision
-      value: dev
+      value: WIP
     - name: url
       value: https://github.com/Reemns97/level3-project.git

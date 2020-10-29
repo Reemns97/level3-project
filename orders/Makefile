@@ -5,7 +5,7 @@ run:
 	docker run -it --rm -p 8082:80 reemns97/orders
 
 apply:
-	kubectl apply -f serviceAccount.yaml -f task.yaml -f clone.yaml -f deply-task.yaml -f pipeline.yaml -n test
+	k apply -f serviceAccount.yaml -f build-push-tasks.yaml -f build-push-taskrun.yaml -f pipeline-resource.yaml -f deploy-task.yaml -f deploy-taskrun.yaml -f pipeline.yaml -n test
 
 create:
-	kubectl create -f pvc.yaml -f pipelinerun.yaml -n test
+	kubectl create -f pipelinerun.yaml -n test

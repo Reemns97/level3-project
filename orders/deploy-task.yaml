@@ -3,19 +3,17 @@ kind: Task
 metadata:
   name: deploy-using-kubectl
 spec:
-  workspaces:
-    - name: git-source
-      description: The git repo
+  resources:
+    inputs: 
+    - name: level3-project
+      type: git
   params:
+    - name: pathToDBYamlFile
+      description: The path to the yaml file to deploy within the git source
+      default: level3-project/orders/db-deployment.yaml
     - name: pathToYamlFile
       description: The path to the yaml file to deploy within the git source
-    - name: imageUrl
-      description: Image name including repository
-    - name: imageTag
-      description: Image tag
-      default: "latest"
-    - name: imageDigest
-      description: Digest of the image to be used.
+      default: level3-project/orders/deployment.yaml
   steps:
     - name: run-kubectl
       image: lachlanevenson/k8s-kubectl
@@ -23,6 +21,8 @@ spec:
       args:
         - "apply"
         - "-f"
-        - "$(workspaces.git-source.path)/$(params.pathToYamlFile)"
+        - "$(params.pathToDBYamlFile)"
+        - "-f"
+        - "$(params.pathToYamlFile)"
         - "-n"
         - "test"
