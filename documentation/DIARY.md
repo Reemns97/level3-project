@@ -26,7 +26,7 @@ Today i tried deploying the microservices using tekton and after my research i d
 ## Day13:
 I have created the service account, secret, role and rolebinding for each microservice. in additon i started working on the tekton files and so far i've finished the shipping, payment and front-end sucessfuly.
 ## Day14:
-chnage of plans :) putting back the taskrun and pipeline resource from before because the microservice that has databases didnt work with the only pipeline and pipelinerun. so i'll be doing 2 tasks, 2 taskruns and 1 pipeline resource, 1 pipeline and 1 pipelinerun.
+chnage of plans :) putting back the taskrun and pipeline resource from before because the microservice that has databases didnt work with the only pipeline and pipelinerun. so i'll be doing 2 tasks, 2 taskruns and 1 pipeline resource, 1 pipeline and 1 pipelinerun for the microservices containing databases. finally finised them all and the app is working! i can now say that the minimum viable product can be deliverd!
 ## Day15:
 
 ## Day16:
