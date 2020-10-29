@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: deploy-taskrun
+spec:
+  serviceAccountName: reem-sa
+  taskRef:
+    name: deploy-using-kubectl
+  resources:
+    inputs:
+    - name: level3-project
+      resourceRef:
+        name: queue-master-resource 
