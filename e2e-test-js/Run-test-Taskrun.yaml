@@ -1,12 +1,12 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: testrun
+  name: test-run
 spec:
   taskRef:
-    name: run-e2e-test-task
+    name: run-e2e-test
   resources:
     inputs:
       - name: level3-project
         resourceRef:
-          name: e2e-js-test-resource
+          name: e2e-test-resource 
