@@ -9,7 +9,7 @@ spec:
         type: git
   steps:
   - name: run-test
-    image: danya97/e2e-test-js
+    image: reemns97/e2e-test
     workingDir: /workspace/level3-project/src
     command: ["/bin/sh"]
     args: ['-c', "/e2e-test-js/runner.sh"] 
