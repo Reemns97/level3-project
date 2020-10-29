@@ -9,4 +9,4 @@ spec:
   resources:
     - name: level3-project
       resourceRef: 
-        name: carts-resources
+        name: carts-resource
