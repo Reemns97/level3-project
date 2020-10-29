@@ -1,16 +1,16 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: e2e-test-js-runner
+  name: e2e-test-taskrun
 spec:
-  serviceAccountName: e2e-test-js-docker-hub
+  serviceAccountName: reem-sa 
   taskRef:
-    name: e2e-test-js
+    name: e2e-test
   params:
   - name: IMAGE
-    value: "danya97/e2e-test-js"
+    value: "reemns97/e2e-test"
   resources:
     inputs:
     - name: level3-project
       resourceRef:
-        name: e2e-test-js-resource
+        name: e2e-test-resource
