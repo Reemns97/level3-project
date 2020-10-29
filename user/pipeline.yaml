@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: build-and-deploy-pipeline
+spec:
+  resources:
+    - name: level3-project
+      type: git
+  tasks:
+    - name: build-push-task
+      taskRef:
+        name: user
+      resources:
+        inputs:
+        - name: level3-project
+          resource: level3-project
+    - name: deploy-to-cluster
+      taskRef:   
+        name: deploy-using-kubectl
+      runAfter:
+        - build-push-task
+      resources:
+        inputs:
+        - name: level3-project
+          resource: level3-project

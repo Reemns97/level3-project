@@ -85,3 +85,9 @@ clean: cleandocker
 	rm -rf bin
 	rm -rf docker/user/bin
 	rm -rf vendor
+
+apply:
+	kubectl apply -f serviceAccount.yaml -f build-push-tasks.yaml -f build-push-taskrun.yaml -f pipeline-resource.yaml -f deploy-task.yaml -f deploy-taskrun.yaml -f pipeline.yaml -n test
+
+create:
+	kubectl create -f pipelinerun.yaml -n test 
