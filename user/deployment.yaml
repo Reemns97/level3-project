@@ -3,44 +3,28 @@ kind: Deployment
 metadata:
   name: user
   labels:
-    name: user
+    app: user
+  namespace: test
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      name: user
-  replicas: 1
+      app: user
   template:
     metadata:
       labels:
-        name: user
+        app: user
     spec:
       containers:
       - name: user
         image: reemns97/user
-        resources:
-          limits:
-            cpu: 300m
-            memory: 100Mi
-          requests:
-            cpu: 100m
-            memory: 100Mi
         ports:
         - containerPort: 80
+        securityContext:
+          runAsUser: 0
         env:
-        - name: mongo
+        - name: MONGO_HOST
           value: user-db:27017
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 300
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 180
-          periodSeconds: 3
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
@@ -49,12 +33,11 @@ kind: Service
 metadata:
   name: user
   labels:
-    name: user
+    app: user
+  namespace: test
 spec:
-  type: NodePort
   ports:
-    # the port that this service should serve on
-  - port: 80
+  - port: 80 
     targetPort: 80
   selector:
-    name: user
+    app: user
