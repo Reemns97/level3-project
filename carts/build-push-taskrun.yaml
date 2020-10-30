@@ -6,9 +6,6 @@ spec:
   serviceAccountName: reem-sa 
   taskRef:
     name: carts
-  params:
-  - name: IMAGE
-    value: "reemns97/carts"
   resources:
     inputs:
     - name: level3-project

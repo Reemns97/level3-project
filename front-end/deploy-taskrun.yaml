@@ -1,13 +1,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: orders-taskrun
+  name: deploy-taskrun
 spec:
-  serviceAccountName: reem-sa 
+  serviceAccountName: reem-sa
   taskRef:
-    name: orders
+    name: deploy-using-kubectl
   resources:
     inputs:
     - name: level3-project
       resourceRef:
-        name: orders-resource 
+        name: front-end-resource 

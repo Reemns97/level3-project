@@ -1,13 +1,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: orders-taskrun
+  name: front-end-taskrun
 spec:
   serviceAccountName: reem-sa 
   taskRef:
-    name: orders
+    name: front-end
   resources:
     inputs:
     - name: level3-project
       resourceRef:
-        name: orders-resource 
+        name: front-end-resource 

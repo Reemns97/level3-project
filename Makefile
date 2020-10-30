@@ -23,14 +23,14 @@ queue-master:
 	kubectl apply -f queue-master/serviceAccount.yaml -f queue-master/pipeline-resource.yaml -f queue-master/build-push-tasks.yaml -f  queue-master/deploy-task.yaml -f  queue-master/build-push-taskrun.yaml -f  queue-master/deploy-taskrun.yaml -f queue-master/pipeline.yaml -n test
 	kubectl create -f queue-master/pipelinerun.yaml -n test
 
-payment:
-	kubectl apply -f payment/serviceAccount.yaml -f  payment/build-push-tasks.yaml -f  payment/clone-task.yaml -f  payment/deploy-task.yaml -f  payment/pipeline.yaml -n test
-	kubectl create -f payment/pvc.yaml -f  payment/pipelinerun.yaml -n test  
+payment:	
+	kubectl apply -f payment/serviceAccount.yaml -f payment/pipeline-resource.yaml -f payment/build-push-tasks.yaml -f  payment/deploy-task.yaml -f  payment/build-push-taskrun.yaml -f  payment/deploy-taskrun.yaml -f payment/pipeline.yaml -n test
+	kubectl create -f payment/pipelinerun.yaml -n test
 
-shipping:	
-	kubectl apply -f shipping/serviceAccount.yaml -f  shipping/build-push-tasks.yaml -f  shipping/clone-task.yaml -f  shipping/deploy-task.yaml -f  shipping/pipeline.yaml -n test
-	kubectl create -f shipping/pvc.yaml -f  shipping/pipelinerun.yaml -n test  
+shipping:		
+	kubectl apply -f shipping/serviceAccount.yaml -f shipping/pipeline-resource.yaml -f shipping/build-push-tasks.yaml -f  shipping/deploy-task.yaml -f  shipping/build-push-taskrun.yaml -f  shipping/deploy-taskrun.yaml -f shipping/pipeline.yaml -n test
+	kubectl create -f shipping/pipelinerun.yaml -n test
 
-front-end:
-	kubectl apply -f front-end/serviceAccount.yaml -f  front-end/build-push-tasks.yaml -f  front-end/clone-task.yaml -f  front-end/deploy-task.yaml -f  front-end/pipeline.yaml -n test
-	kubectl create -f front-end/pvc.yaml -f  front-end/pipelinerun.yaml -n test  
+front-end: 
+	kubectl apply -f front-end/serviceAccount.yaml -f front-end/pipeline-resource.yaml -f front-end/build-push-tasks.yaml -f  front-end/deploy-task.yaml -f  front-end/build-push-taskrun.yaml -f  front-end/deploy-taskrun.yaml -f front-end/pipeline.yaml -n test
+	kubectl create -f front-end/pipelinerun.yaml -n test

@@ -1,13 +1,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: orders-taskrun
+  name: payment-taskrun
 spec:
   serviceAccountName: reem-sa 
   taskRef:
-    name: orders
+    name: payment
   resources:
     inputs:
     - name: level3-project
       resourceRef:
-        name: orders-resource 
+        name: payment-resource 
