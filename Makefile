@@ -1,6 +1,6 @@
-.PHONY: carts catalogue orders user queue-master payment shipping front-end 
+.PHONY: carts catalogue orders user queue-master payment shipping front-end
 
-up: carts catalogue orders user queue-master payment shipping front-end 
+up: make carts && make catalogue && make orders && make user && make queue-master && make payment && make shipping && make front-end 
 
 carts:
 	kubectl apply -f carts/serviceAccount.yaml -f carts/pipeline-resource.yaml -f carts/build-push-tasks.yaml -f  carts/deploy-task.yaml -f  carts/build-push-taskrun.yaml -f  carts/deploy-taskrun.yaml -f carts/pipeline.yaml -n test
