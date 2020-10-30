@@ -1,6 +1,7 @@
 .PHONY: carts catalogue orders user queue-master payment shipping front-end
 
-up: make carts && make catalogue && make orders && make user && make queue-master && make payment && make shipping && make front-end 
+up:
+	 make carts && make catalogue && make orders && make user && make queue-master && make payment && make shipping && make front-end 
 
 build:
 	cd k8s-sandbox && make up && make install-cicd 
