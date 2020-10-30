@@ -42,6 +42,10 @@ front-end:
 test:
 	kubectl apply -f  e2e-test-js/serviceAccount.yaml -f e2e-test-js/pipeline-resource.yaml -f e2e-test-js/build-push-task.yaml -f e2e-test-js/run-test-task.yaml -f e2e-test-js/build-push-taskrun.yaml -f e2e-test-js/run-test-taskrun.yaml -n test
 
-monitor:
-	./monitoring/elf/apply.sh
-	./monitoring/pro-graf.sh
+monitor: elf grafana
+
+elf:
+	cd monitoring && cd elf && ./apply.sh
+
+grafana:
+	cd monitoring && cd pro-graf && ./apply.sh
