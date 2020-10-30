@@ -3,6 +3,9 @@
 ## To build the K3D:
 Use `make build`
 
+## important changes
+all the serviceAccount.yaml files need to be edited and your personal docker credentials needs to be added. (username and password)
+
 ## To run the project:
 Prefarably you run each microservice seperatly using these commands:
 `make shipping`
