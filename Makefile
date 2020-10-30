@@ -2,6 +2,9 @@
 
 up: make carts && make catalogue && make orders && make user && make queue-master && make payment && make shipping && make front-end 
 
+build:
+	cd k8s-sandbox && make up && make install-cicd 
+
 carts:
 	kubectl apply -f carts/serviceAccount.yaml -f carts/pipeline-resource.yaml -f carts/build-push-tasks.yaml -f  carts/deploy-task.yaml -f  carts/build-push-taskrun.yaml -f  carts/deploy-taskrun.yaml -f carts/pipeline.yaml -n test
 	kubectl create -f carts/pipelinerun.yaml -n test
