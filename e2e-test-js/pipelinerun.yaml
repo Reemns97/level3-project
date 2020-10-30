@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: picalc-pr-
+spec:
+  pipelineRef:
+    name: test-pipeline
+  serviceAccountName: reem-sa 
+  resources:
+    - name: level3-project
+      resourceRef: 
+        name: e2e-test-resource 

@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: test-pipeline
+spec:
+  resources:
+    - name: level3-project
+      type: git
+  tasks:
+    - name: build-push-task
+      taskRef:
+        name: e2e-test
+      resources:
+        inputs:
+        - name: level3-project
+          resource: level3-project
+    - name: deploy-to-cluster
+      taskRef:   
+        name: run-e2e-test
+      runAfter:
+        - build-push-task
+      resources:
+        inputs:
+        - name: level3-project
+          resource: level3-project
