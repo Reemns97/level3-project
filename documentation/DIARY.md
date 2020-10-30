@@ -26,7 +26,8 @@ Today i tried deploying the microservices using tekton and after my research i d
 ## Day13:
 I have created the service account, secret, role and rolebinding for each microservice. in additon i started working on the tekton files and so far i've finished the shipping, payment and front-end sucessfuly.
 ## Day14:
-chnage of plans :) putting back the taskrun and pipeline resource from before because the microservice that has databases didnt work with the only pipeline and pipelinerun. so i'll be doing 2 tasks, 2 taskruns and 1 pipeline resource, 1 pipeline and 1 pipelinerun for the microservices containing databases. finally finised them all and the app is working! i can now say that the minimum viable product can be deliverd!
+chnage of plans :) putting back the taskrun and pipeline resource from before because the microservice that has databases didnt work with the only pipeline and pipelinerun. so i'll be doing 2 tasks, 2 taskruns and 1 pipeline resource, 1 pipeline and 1 pipelinerun. finally finised them all and the app is working!
 ## Day15:
-
+Today i tried doing the test, i fixed some of the tests and then i created a test image and pushed it to dockerhub. after i ran the image using tekton, all the test passed except 1 "that tests if the user was moved to order page" the reason it fails is because in the app i have to press the button twice in order to go to the page. 
 ## Day16:
+i tried fixing the test problem, changed the dockerfile and deployment file of the order microservice, but same thing is happining... another problem that i am facing is that if i ran all the microservices's tekton files at the sametime, some of the them dont work :) they dont show an error but when i check the services and deployment in kubernetes i cant find them, then i run them again alone then they work :) also i deployed pro-grafana and elf. today is the last day and saddly i dont think i'll be able to do the production part. HOWEVER, planing on doing them even after the submisson.
