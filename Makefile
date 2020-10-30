@@ -3,34 +3,34 @@
 up: carts catalogue orders user queue-master payment shipping front-end 
 
 carts:
-	kubectl apply -f carts/tekton/serviceAccount.yaml -f carts/tekton/pipeline-resource.yaml -f carts/tekton/build-push-tasks.yaml -f  carts/tekton/deploy-task.yaml -f  carts/tekton/build-push-taskrun.yaml -f  carts/tekton/deploy-taskrun.yaml -f carts/tekton/pipeline.yaml -n test
-	kubectl create -f carts/tekton/pipelinerun.yaml -n test
+	kubectl apply -f carts/serviceAccount.yaml -f carts/pipeline-resource.yaml -f carts/build-push-tasks.yaml -f  carts/deploy-task.yaml -f  carts/build-push-taskrun.yaml -f  carts/deploy-taskrun.yaml -f carts/pipeline.yaml -n test
+	kubectl create -f carts/pipelinerun.yaml -n test
 
 catalogue:
-	kubectl apply -f catalogue/tekton/serviceAccount.yaml -f catalogue/tekton/pipeline-resource.yaml -f catalogue/tekton/build-push-tasks.yaml -f  catalogue/tekton/deploy-task.yaml -f  catalogue/tekton/build-push-taskrun.yaml -f  catalogue/tekton/deploy-taskrun.yaml -f catalogue/tekton/pipeline.yaml -n test
-	kubectl create -f catalogue/tekton/pipelinerun.yaml -n test
+	kubectl apply -f catalogue/serviceAccount.yaml -f catalogue/pipeline-resource.yaml -f catalogue/build-push-tasks.yaml -f  catalogue/deploy-task.yaml -f  catalogue/build-push-taskrun.yaml -f  catalogue/deploy-taskrun.yaml -f catalogue/pipeline.yaml -n test
+	kubectl create -f catalogue/pipelinerun.yaml -n test
 
 
 orders:
-	kubectl apply -f orders/tekton/serviceAccount.yaml -f orders/tekton/pipeline-resource.yaml -f orders/tekton/build-push-tasks.yaml -f  orders/tekton/deploy-task.yaml -f  orders/tekton/build-push-taskrun.yaml -f  orders/tekton/deploy-taskrun.yaml -f orders/tekton/pipeline.yaml -n test
-	kubectl create -f orders/tekton/pipelinerun.yaml -n test
+	kubectl apply -f orders/serviceAccount.yaml -f orders/pipeline-resource.yaml -f orders/build-push-tasks.yaml -f  orders/deploy-task.yaml -f  orders/build-push-taskrun.yaml -f  orders/deploy-taskrun.yaml -f orders/pipeline.yaml -n test
+	kubectl create -f orders/pipelinerun.yaml -n test
 
 user:
-	kubectl apply -f user/tekton/serviceAccount.yaml -f user/tekton/pipeline-resource.yaml -f user/tekton/build-push-tasks.yaml -f  user/tekton/deploy-task.yaml -f  user/tekton/build-push-taskrun.yaml -f  user/tekton/deploy-taskrun.yaml -f user/tekton/pipeline.yaml -n test
-	kubectl create -f user/tekton/pipelinerun.yaml -n test
+	kubectl apply -f user/serviceAccount.yaml -f user/pipeline-resource.yaml -f user/build-push-tasks.yaml -f  user/deploy-task.yaml -f  user/build-push-taskrun.yaml -f  user/deploy-taskrun.yaml -f user/pipeline.yaml -n test
+	kubectl create -f user/pipelinerun.yaml -n test
 
 queue-master:
-	kubectl apply -f queue-master/tekton/serviceAccount.yaml -f queue-master/tekton/pipeline-resource.yaml -f queue-master/tekton/build-push-tasks.yaml -f  queue-master/tekton/deploy-task.yaml -f  queue-master/tekton/build-push-taskrun.yaml -f  queue-master/tekton/deploy-taskrun.yaml -f queue-master/tekton/pipeline.yaml -n test
-	kubectl create -f queue-master/tekton/pipelinerun.yaml -n test
+	kubectl apply -f queue-master/serviceAccount.yaml -f queue-master/pipeline-resource.yaml -f queue-master/build-push-tasks.yaml -f  queue-master/deploy-task.yaml -f  queue-master/build-push-taskrun.yaml -f  queue-master/deploy-taskrun.yaml -f queue-master/pipeline.yaml -n test
+	kubectl create -f queue-master/pipelinerun.yaml -n test
 
 payment:
-	kubectl apply -f payment/tekton/serviceAccount.yaml -f  payment/tekton/build-push-tasks.yaml -f  payment/tekton/clone-task.yaml -f  payment/tekton/deploy-task.yaml -f  payment/tekton/pipeline.yaml -n test
-	kubectl create -f payment/tekton/pvc.yaml -f  payment/tekton/pipelinerun.yaml -n test  
+	kubectl apply -f payment/serviceAccount.yaml -f  payment/build-push-tasks.yaml -f  payment/clone-task.yaml -f  payment/deploy-task.yaml -f  payment/pipeline.yaml -n test
+	kubectl create -f payment/pvc.yaml -f  payment/pipelinerun.yaml -n test  
 
 shipping:	
-	kubectl apply -f shipping/tekton/serviceAccount.yaml -f  shipping/tekton/build-push-tasks.yaml -f  shipping/tekton/clone-task.yaml -f  shipping/tekton/deploy-task.yaml -f  shipping/tekton/pipeline.yaml -n test
-	kubectl create -f shipping/tekton/pvc.yaml -f  shipping/tekton/pipelinerun.yaml -n test  
+	kubectl apply -f shipping/serviceAccount.yaml -f  shipping/build-push-tasks.yaml -f  shipping/clone-task.yaml -f  shipping/deploy-task.yaml -f  shipping/pipeline.yaml -n test
+	kubectl create -f shipping/pvc.yaml -f  shipping/pipelinerun.yaml -n test  
 
 front-end:
-	kubectl apply -f front-end/tekton/serviceAccount.yaml -f  front-end/tekton/build-push-tasks.yaml -f  front-end/tekton/clone-task.yaml -f  front-end/tekton/deploy-task.yaml -f  front-end/tekton/pipeline.yaml -n test
-	kubectl create -f front-end/tekton/pvc.yaml -f  front-end/tekton/pipelinerun.yaml -n test  
+	kubectl apply -f front-end/serviceAccount.yaml -f  front-end/build-push-tasks.yaml -f  front-end/clone-task.yaml -f  front-end/deploy-task.yaml -f  front-end/pipeline.yaml -n test
+	kubectl create -f front-end/pvc.yaml -f  front-end/pipelinerun.yaml -n test  
