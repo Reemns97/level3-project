@@ -38,3 +38,6 @@ shipping:
 front-end: 
 	kubectl apply -f front-end/serviceAccount.yaml -f front-end/pipeline-resource.yaml -f front-end/build-push-tasks.yaml -f  front-end/deploy-task.yaml -f  front-end/build-push-taskrun.yaml -f  front-end/deploy-taskrun.yaml -f front-end/pipeline.yaml -n test
 	kubectl create -f front-end/pipelinerun.yaml -n test
+
+test:
+	kubectl apply -f  e2e-test-js/serviceAccount.yaml -f e2e-test-js/pipeline-resource.yaml -f e2e-test-js/build-push-task.yaml -f e2e-test-js/run-test-task.yaml -f e2e-test-js/build-push-taskrun.yaml -f e2e-test-js/run-test-taskrun.yaml -n test
